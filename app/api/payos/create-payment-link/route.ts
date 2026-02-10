@@ -4,11 +4,17 @@ import { createClient } from '@supabase/supabase-js';
 import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 
-const payos = new PayOS({
-    clientId: process.env.PAYOS_CLIENT_ID!,
-    apiKey: process.env.PAYOS_API_KEY!,
-    checksumKey: process.env.PAYOS_CHECKSUM_KEY!
-});
+// Initialize PayOS lazily to avoid build-time errors if env vars are missing
+const getPayOS = () => {
+    if (!process.env.PAYOS_CLIENT_ID || !process.env.PAYOS_API_KEY || !process.env.PAYOS_CHECKSUM_KEY) {
+        throw new Error('Missing PayOS environment variables');
+    }
+    return new PayOS({
+        clientId: process.env.PAYOS_CLIENT_ID,
+        apiKey: process.env.PAYOS_API_KEY,
+        checksumKey: process.env.PAYOS_CHECKSUM_KEY
+    });
+};
 
 export async function POST(req: NextRequest) {
     const cookieStore = await cookies();
@@ -94,7 +100,7 @@ export async function POST(req: NextRequest) {
         }
 
         // 5. Create PayOS Payment Link using v2 API
-        const paymentLink = await payos.paymentRequests.create(paymentData);
+        const paymentLink = await getPayOS().paymentRequests.create(paymentData);
 
         return NextResponse.json({
             success: true,

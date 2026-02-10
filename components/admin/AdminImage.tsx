@@ -1,6 +1,5 @@
-'use client';
-
 import { useState } from 'react';
+import Image from 'next/image';
 
 interface AdminImageProps {
     src: string | undefined | null;
@@ -20,12 +19,15 @@ export default function AdminImage({
     const [imgSrc, setImgSrc] = useState(src || fallback);
 
     return (
-        <img
-            src={imgSrc}
-            alt={alt}
-            className={className}
-            style={style}
-            onError={() => setImgSrc(fallback)}
-        />
+        <div className={`relative ${className}`} style={style}>
+            <Image
+                src={imgSrc}
+                alt={alt}
+                fill
+                className="object-cover"
+                onError={() => setImgSrc(fallback)}
+                unoptimized
+            />
+        </div>
     );
 }

@@ -50,7 +50,7 @@ export default function ChapterList({ storyId, initialChapters, totalChapters, c
         params.set('page', '1'); // Reset to page 1 on search
         router.push(`/admin/stories/${storyId}/chapters?${params.toString()}`);
         setSelectedIds([]); // Clear selection when search changes
-    }, [debouncedSearch, router, storyId]);
+    }, [debouncedSearch, router, storyId, searchParams]);
 
     const handleSelectAll = (checked: boolean) => {
         if (checked) {

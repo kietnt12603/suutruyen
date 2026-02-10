@@ -87,7 +87,7 @@ export default function StoryForm({ story, allCategories }: StoryFormProps) {
     const handleSave = async () => {
         setIsSaving(true);
         try {
-            const result = await updateStory(story.id, formData);
+            const result = await updateStory(story.id, formData as any);
             if (result.success) {
                 router.refresh();
                 router.push('/admin/stories');
@@ -271,7 +271,7 @@ export default function StoryForm({ story, allCategories }: StoryFormProps) {
                         <div className="flex items-center justify-between rounded-lg border p-4 transition-colors hover:bg-slate-50/50">
                             <div className="space-y-0.5">
                                 <Label htmlFor="isNew" className="text-base font-bold text-slate-900 border-none">Truyện Mới</Label>
-                                <p className="text-xs text-slate-500">Gắn nhãn "Mới" cho truyện.</p>
+                                <p className="text-xs text-slate-500">Gắn nhãn &quot;Mới&quot; cho truyện.</p>
                             </div>
                             <Switch
                                 id="isNew"

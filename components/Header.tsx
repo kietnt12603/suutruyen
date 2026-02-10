@@ -28,10 +28,13 @@ export default function Header({ categories }: HeaderProps) {
                 {/* Logo Section */}
                 <div className="flex items-center gap-8 shrink-0">
                     <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
-                        <img
+                        <Image
                             src="/images/logo_text.png"
                             alt="Logo Suu Truyen"
+                            width={150}
+                            height={32}
                             className="h-8 w-auto object-contain"
+                            priority
                         />
                     </Link>
 

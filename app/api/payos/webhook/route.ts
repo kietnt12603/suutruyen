@@ -2,11 +2,17 @@ import { NextRequest, NextResponse } from 'next/server';
 import { PayOS } from '@payos/node';
 import { createClient } from '@supabase/supabase-js';
 
-const payos = new PayOS({
-    clientId: process.env.PAYOS_CLIENT_ID!,
-    apiKey: process.env.PAYOS_API_KEY!,
-    checksumKey: process.env.PAYOS_CHECKSUM_KEY!
-});
+// Initialize PayOS lazily to avoid build-time errors if env vars are missing
+const getPayOS = () => {
+    if (!process.env.PAYOS_CLIENT_ID || !process.env.PAYOS_API_KEY || !process.env.PAYOS_CHECKSUM_KEY) {
+        throw new Error('Missing PayOS environment variables');
+    }
+    return new PayOS({
+        clientId: process.env.PAYOS_CLIENT_ID,
+        apiKey: process.env.PAYOS_API_KEY,
+        checksumKey: process.env.PAYOS_CHECKSUM_KEY
+    });
+};
 
 export async function POST(req: NextRequest) {
     console.log('--- PAYOS WEBHOOK START ---');
@@ -16,7 +22,7 @@ export async function POST(req: NextRequest) {
 
         // 1. Verify Webhook Data Integrity using v2 API
         // In @payos/node v2, verify is an async method
-        const webhookData = await payos.webhooks.verify(body);
+        const webhookData = await getPayOS().webhooks.verify(body);
 
         console.log('Verified Webhook Data:', JSON.stringify(webhookData));
 
