@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { signIn } from '@/lib/auth';
@@ -10,7 +10,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
-export default function UserLogin() {
+function LoginContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const redirectTo = searchParams.get('redirectTo') || '/';
@@ -141,5 +141,17 @@ export default function UserLogin() {
                 </Card>
             </div>
         </div>
+    );
+}
+
+export default function UserLogin() {
+    return (
+        <Suspense fallback={
+            <div className="min-h-screen flex items-center justify-center bg-black/80 backdrop-blur-sm">
+                <Loader2 className="h-8 w-8 text-blue-500 animate-spin" />
+            </div>
+        }>
+            <LoginContent />
+        </Suspense>
     );
 }

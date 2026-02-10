@@ -76,7 +76,7 @@
 //         </div>
 //     );
 // }
-
+import { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getStoryById, getChapters } from '@/lib/api';
@@ -146,13 +146,15 @@ export default async function ChapterManagement({ params: paramsPromise, searchP
                 </div>
             </div>
 
-            <ChapterList
-                storyId={id}
-                initialChapters={chaptersResult.data}
-                totalChapters={chaptersResult.count}
-                currentPage={currentPage}
-                pageSize={pageSize}
-            />
+            <Suspense fallback={<div className="h-40 w-full bg-white/5 animate-pulse rounded-lg" />}>
+                <ChapterList
+                    storyId={id}
+                    initialChapters={chaptersResult.data}
+                    totalChapters={chaptersResult.count}
+                    currentPage={currentPage}
+                    pageSize={pageSize}
+                />
+            </Suspense>
         </div>
     );
 }

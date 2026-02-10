@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import Link from 'next/link';
 import { getStories, getCategories } from '@/lib/api';
 import StoryFilters from '@/components/admin/StoryFilters';
@@ -46,7 +47,9 @@ export default async function AdminStories(props: {
                 </Button>
             </div>
 
-            <StoryFilters categories={allCategories} />
+            <Suspense fallback={<div className="h-10 w-full bg-white/5 animate-pulse rounded-lg" />}>
+                <StoryFilters categories={allCategories} />
+            </Suspense>
 
             <StoryTable initialStories={stories} />
 
