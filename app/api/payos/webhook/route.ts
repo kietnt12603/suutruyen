@@ -26,10 +26,13 @@ export async function POST(req: NextRequest) {
 
         console.log('Verified Webhook Data:', JSON.stringify(webhookData));
 
-        // success if status is 'PAID' or code is '00'
-        if (webhookData.code === '00' || body.success === true) {
+        // success if code is '00' or status is 'PAID'
+        const data = webhookData as any;
+        const isSuccess = data.code === '00' || body.code === '00' || data.status === 'PAID';
+
+        if (isSuccess) {
             const orderId = webhookData.orderCode;
-            console.log(`Processing successful payment for Order ID: ${orderId}`);
+            console.log(`[PAYOS WEBHOOK] Processing successful payment for Order ID: ${orderId}`);
 
             // 2. Initialize Supabase Admin
             const supabase = createClient(
