@@ -153,9 +153,17 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                     table: 'profiles',
                     filter: `id=eq.${user.id}`
                 },
-                (payload: any) => {
-                    console.log('[AuthContext] Realtime profile update received:', payload);
-                    setProfile(payload.new);
+                async (payload: any) => {
+                    console.log('[AuthContext] Realtime profile update event received:', payload.eventType);
+                    console.log('[AuthContext] Payload details:', {
+                        old: payload.old,
+                        new: payload.new,
+                        table: payload.table
+                    });
+
+                    // Instead of trust payload.new (which might be partial), re-fetch the full profile
+                    console.log('[AuthContext] Re-fetching full profile to ensure data consistency...');
+                    await refreshProfile();
                 }
             )
             .subscribe((status: string) => {

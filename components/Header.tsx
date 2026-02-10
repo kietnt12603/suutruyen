@@ -123,6 +123,17 @@ export default function Header({ categories }: HeaderProps) {
                             <div className="h-9 w-9 rounded-full bg-slate-800 animate-pulse"></div>
                         ) : user ? (
                             <div className="relative">
+                                {(() => {
+                                    if (typeof window !== 'undefined') {
+                                        console.log('[Header] Rendering logged-in state:', {
+                                            userId: user.id,
+                                            hasProfile: !!profile,
+                                            fullName: profile?.full_name,
+                                            balance: profile?.linh_thach
+                                        });
+                                    }
+                                    return null;
+                                })()}
                                 <button
                                     className={`flex items-center gap-2.5 p-1 pr-4 rounded-full border border-white/10 transition-all ${isUserOpen ? 'bg-white/10' : 'bg-white/5 hover:bg-white/10'
                                         }`}
@@ -133,7 +144,9 @@ export default function Header({ categories }: HeaderProps) {
                                     }}
                                 >
                                     <div className="h-8 w-8 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold text-xs shadow-inner">
-                                        {profile?.full_name?.charAt(0).toUpperCase() || user.email?.charAt(0).toUpperCase()}
+                                        {profile?.full_name?.charAt(0).toUpperCase() || user.email?.charAt(0).toUpperCase() || (
+                                            <UserIcon className="h-4 w-4" />
+                                        )}
                                     </div>
                                     <div className="flex flex-col items-start leading-none">
                                         <span className="text-white text-xs font-bold truncate max-w-[100px]">
