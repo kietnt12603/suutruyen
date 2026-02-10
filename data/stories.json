@@ -1,0 +1,177 @@
+{
+    "categories": [
+        {
+            "id": 1,
+            "name": "Ngôn Tình",
+            "slug": "ngon-tinh"
+        },
+        {
+            "id": 2,
+            "name": "Trọng Sinh",
+            "slug": "trong-sinh"
+        },
+        {
+            "id": 3,
+            "name": "Cổ Đại",
+            "slug": "co-dai"
+        },
+        {
+            "id": 4,
+            "name": "Tiên Hiệp",
+            "slug": "tien-hiep"
+        },
+        {
+            "id": 5,
+            "name": "Ngược",
+            "slug": "nguoc"
+        },
+        {
+            "id": 6,
+            "name": "Khác",
+            "slug": "khac"
+        },
+        {
+            "id": 7,
+            "name": "Dị Giới",
+            "slug": "di-gioi"
+        },
+        {
+            "id": 8,
+            "name": "Huyền Huyễn",
+            "slug": "huyen-huyen"
+        },
+        {
+            "id": 9,
+            "name": "Xuyên Không",
+            "slug": "xuyen-khong"
+        },
+        {
+            "id": 10,
+            "name": "Sủng",
+            "slug": "sung"
+        },
+        {
+            "id": 11,
+            "name": "Cung Đấu",
+            "slug": "cung-dau"
+        },
+        {
+            "id": 12,
+            "name": "Gia Đấu",
+            "slug": "gia-dau"
+        }
+    ],
+    "stories": [
+        {
+            "id": 1,
+            "name": "Tự Cẩm",
+            "slug": "tu-cam",
+            "image": "/images/tu_cam.jpg",
+            "author": "Tác giả 1",
+            "description": "Mô tả truyện Tự Cẩm...",
+            "categories": [
+                "Ngôn Tình",
+                "Cổ Đại"
+            ],
+            "chapters": 120,
+            "status": "full",
+            "hot": true,
+            "new": true,
+            "views": 15000,
+            "rating": 4.8
+        },
+        {
+            "id": 2,
+            "name": "Ngạo Thế Đan Thần",
+            "slug": "ngao-the-dan-than",
+            "image": "/images/ngao_the_dan_than.jpg",
+            "author": "Tác giả 2",
+            "description": "Mô tả truyện Ngạo Thế Đan Thần...",
+            "categories": [
+                "Tiên Hiệp",
+                "Huyền Huyễn"
+            ],
+            "chapters": 3500,
+            "status": "full",
+            "hot": true,
+            "new": true,
+            "views": 25000,
+            "rating": 4.9
+        },
+        {
+            "id": 3,
+            "name": "Nàng Không Muốn Làm Hoàng Hậu",
+            "slug": "nang-khong-muon-lam-hoang-hau",
+            "image": "/images/nang_khong_muon_lam_hoang_hau.jpg",
+            "author": "Tác giả 3",
+            "description": "Mô tả truyện Nàng Không Muốn Làm Hoàng Hậu...",
+            "categories": [
+                "Ngôn Tình",
+                "Cổ Đại",
+                "Xuyên Không"
+            ],
+            "chapters": 85,
+            "status": "full",
+            "hot": true,
+            "new": true,
+            "views": 18000,
+            "rating": 4.7
+        },
+        {
+            "id": 4,
+            "name": "Kiều Sủng Vi Thượng",
+            "slug": "kieu-sung-vi-thuong",
+            "image": "/images/kieu_sung_vi_thuong.jpg",
+            "author": "Tác giả 4",
+            "description": "Mô tả truyện Kiều Sủng Vi Thượng...",
+            "categories": [
+                "Ngôn Tình",
+                "Sủng"
+            ],
+            "chapters": 95,
+            "status": "full",
+            "hot": true,
+            "new": true,
+            "views": 12000,
+            "rating": 4.6
+        },
+        {
+            "id": 5,
+            "name": "Linh Vũ Thiên Hạ",
+            "slug": "linh-vu-thien-ha",
+            "image": "/images/linh_vu_thien_ha.jpg",
+            "author": "Tác giả 5",
+            "description": "Mô tả truyện Linh Vũ Thiên Hạ...",
+            "categories": [
+                "Tiên Hiệp",
+                "Dị Giới",
+                "Huyền Huyễn"
+            ],
+            "chapters": 5024,
+            "status": "full",
+            "hot": true,
+            "new": true,
+            "views": 30000,
+            "rating": 5.0
+        },
+        {
+            "id": 6,
+            "name": "Kiếm Động Cửu Thiên",
+            "slug": "kiem-dong-cuu-thien",
+            "image": "/images/kiem_dong_cuu_thien.jpg",
+            "author": "Tác giả 6",
+            "description": "Mô tả truyện Kiếm Động Cửu Thiên...",
+            "categories": [
+                "Tiên Hiệp",
+                "Kiếm Hiệp",
+                "Dị Giới"
+            ],
+            "chapters": 1149,
+            "status": "full",
+            "hot": true,
+            "new": true,
+            "views": 22000,
+            "rating": 4.8
+        }
+    ]
+}
