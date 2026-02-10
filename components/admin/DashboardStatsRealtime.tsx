@@ -69,7 +69,7 @@ export default function DashboardStatsRealtime({ initialStats }: DashboardStatsR
                         .select('views');
 
                     if (data) {
-                        const totalViews = data.reduce((sum, story) => sum + (story.views || 0), 0);
+                        const totalViews = data.reduce((sum: number, story: any) => sum + (story.views || 0), 0);
                         setStats(prev => ({ ...prev, totalViews }));
                         highlightStat('totalViews');
                     }
