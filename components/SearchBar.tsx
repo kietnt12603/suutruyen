@@ -3,17 +3,23 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import storiesData from '@/data/stories';
+import { getStories } from '@/lib/api';
+import type { Story } from '@/types';
 
 export default function SearchBar() {
     const [searchQuery, setSearchQuery] = useState('');
-    const [searchResults, setSearchResults] = useState<typeof storiesData.stories>([]);
+    const [searchResults, setSearchResults] = useState<Story[]>([]);
     const [showResults, setShowResults] = useState(false);
+    const [searchTimeout, setSearchTimeout] = useState<NodeJS.Timeout | null>(null);
 
     const router = useRouter();
 
     const handleSearch = (query: string) => {
         setSearchQuery(query);
+
+        if (searchTimeout) {
+            clearTimeout(searchTimeout);
+        }
 
         if (query.length === 0) {
             setShowResults(false);
@@ -21,12 +27,13 @@ export default function SearchBar() {
             return;
         }
 
-        const results = storiesData.stories.filter(story =>
-            story.name.toLowerCase().includes(query.toLowerCase())
-        );
+        const timeout = setTimeout(async () => {
+            const { data } = await getStories({ search: query, limit: 5 });
+            setSearchResults(data);
+            setShowResults(true);
+        }, 300);
 
-        setSearchResults(results);
-        setShowResults(true);
+        setSearchTimeout(timeout);
     };
 
     const handleSubmit = (e: React.FormEvent) => {
